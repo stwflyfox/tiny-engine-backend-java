@@ -223,10 +223,15 @@ public class BlockGroupServiceImpl extends ServiceImpl<BlockGroupMapper, BlockGr
                 List<BlockCarriersRelation> blockCarriersRelations
                     = blockCarriersRelationMapper.queryBlockCarriersRelationByCondition(queryParam);
                 if (blockCarriersRelations.isEmpty()) {
-                    continue;
+                    
+                    String version = block.getLatestVersion();
+                    block.setCurrentVersion(version);
                 }
-                String version = blockCarriersRelations.get(0).getVersion();
-                block.setCurrentVersion(version);
+                else {
+                    String version = blockCarriersRelations.get(0).getVersion();
+                    block.setCurrentVersion(version);
+                }
+            
             }
 
         }

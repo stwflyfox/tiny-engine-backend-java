@@ -39,6 +39,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 import java.util.List;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * <p>
@@ -125,6 +129,28 @@ public class BlockGroupController {
     @PostMapping("/block-groups/update/{id}")
     public Result<List<BlockGroup>> updateBlockGroups(@Valid @PathVariable Integer id,
         @RequestBody BlockGroup blockGroup) {
+    //    // 创建 ObjectMapper 实例
+    // ObjectMapper objectMapper = new ObjectMapper();
+
+    // // 使用 try-with-resources 确保资源关闭
+    // try (BufferedWriter writer = new BufferedWriter(new FileWriter("block.log", true))) {
+        
+    //     // 转换为 JSON
+    //     String json = objectMapper.writeValueAsString(blockGroup);
+        
+    
+        
+    //     // 写入文件
+    //     writer.write(json);
+        
+    // } catch (IOException e) {        
+    //     // 可以尝试写入原始对象信息
+    //     try (BufferedWriter writer = new BufferedWriter(new FileWriter("block.log", true))) {
+    //         writer.write(blockGroup.toString());
+    //     } catch (IOException ioException) {
+    //         System.err.println("写入失败信息也失败了: " + ioException.getMessage());
+    //     }
+    // } 
         blockGroup.setId(id);
         blockGroupService.updateBlockGroupById(blockGroup);
         // 页面返回数据显示
