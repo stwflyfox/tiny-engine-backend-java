@@ -180,6 +180,9 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
             appExtendConfig.remove("route");
             app.getExtendConfig().putAll(appExtendConfig);
         }
+
+        app.setTenantId(app.getTenantId() == null ? "1" : app.getTenantId());
+
         int result = baseMapper.updateAppById(app);
         if (result < 1) {
             return Result.failed(ExceptionEnum.CM001);
